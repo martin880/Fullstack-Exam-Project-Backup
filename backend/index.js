@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import session from "express-session";
+import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import db from "./config/Database.js";
 import SequelizeStore from "connect-session-sequelize";
@@ -40,6 +41,8 @@ app.use(
     origin: "http://localhost:3000",
   })
 );
+
+app.use(cookieParser());
 app.use(express.json());
 app.use("/users", UserRoute);
 app.use("/auth", AuthRoute);

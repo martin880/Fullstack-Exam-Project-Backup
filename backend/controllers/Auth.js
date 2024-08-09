@@ -1,5 +1,6 @@
 import User from "../models/UserModel.js";
 import argon2 from "argon2";
+import jwt from "jsonwebtoken";
 
 export const Login = async (req, res) => {
   try {
@@ -19,6 +20,16 @@ export const Login = async (req, res) => {
     await user.save();
 
     req.session.userId = user.uuid;
+
+    // Create JWT token
+    const token = jwt.sign({ userId: user.uuid }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
+
+    res.cookie("authToken", token, {
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000, // Cookie valid for 1 day
+    });
 
     res.status(200).json({
       uuid: user.uuid,
@@ -61,6 +72,13 @@ export const Logout = async (req, res) => {
     // destroy user session
     req.session.destroy((err) => {
       if (err) return res.status(400).json({ msg: "Cannot log out" });
+
+      // Clear the cookie after session destruction
+      // res.clearCookie("authToken", {
+      //   httpOnly: true, // Ensure cookie is not accessible via JavaScript
+      //   sameSite: "Strict", // Prevent cookie from being sent on cross-site requests
+      // });
+
       res.status(200).json({ msg: "You have logged out" });
     });
   } catch (error) {
