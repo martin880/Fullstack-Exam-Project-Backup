@@ -25,51 +25,54 @@ const Login = () => {
   };
 
   return (
-    <section className="hero is-fullheight is-fullwidth">
-      <div className="hero-body">
-        <div className="container">
-          <div className="columns is-centered">
-            <div className="column is-4">
-              <form onSubmit={Auth} className="box">
-                {isError && <p className="has-text-centered">{message}</p>}
-                <h1 className="title is-2">Sign In</h1>
-                <div className="field">
-                  <label className="label">Email</label>
-                  <div className="control">
-                    <input
-                      type="text"
-                      className="input"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Email"
-                    />
-                  </div>
-                </div>
-                <div className="field">
-                  <label className="label">Password</label>
-                  <div className="control">
-                    <input
-                      type="password"
-                      className="input"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      placeholder="******"
-                    />
-                  </div>
-                </div>
-                <div className="field mt-5">
-                  <button
-                    type="submit"
-                    className="button is-success is-fullwidth"
-                  >
-                    {isLoading ? "Loading..." : "Login"}
-                  </button>
-                </div>
-                <div>
-                  <Link to={"/register"}>Sign Up</Link>
-                </div>
-              </form>
-            </div>
+    <section className="min-h-screen flex justify-center items-center">
+      <div className="container mx-auto">
+        <div className="flex justify-center">
+          <div className="w-full max-w-md">
+            <form onSubmit={Auth} className="bg-white p-8 shadow-md rounded">
+              {isError && <p className="text-center text-red-600">{message}</p>}
+              <h1 className="text-3xl font-bold text-center mb-6">Sign In</h1>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Email
+                </label>
+                <input
+                  type="text"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Email"
+                />
+              </div>
+              <div className="mb-6">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="******"
+                />
+              </div>
+              <div className="mb-4">
+                <button
+                  type="submit"
+                  className="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                >
+                  {isLoading ? "Loading..." : "Login"}
+                </button>
+              </div>
+              <div className="text-center">
+                <Link
+                  to={"/register"}
+                  className="text-blue-500 hover:text-blue-700"
+                >
+                  Sign Up
+                </Link>
+              </div>
+            </form>
           </div>
         </div>
       </div>

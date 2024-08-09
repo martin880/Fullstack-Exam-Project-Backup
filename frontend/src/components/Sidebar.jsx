@@ -16,37 +16,51 @@ const Sidebar = () => {
   };
 
   return (
-    <div>
-      <aside className="menu pl-2 has-shadow">
-        <p className="menu-label">General</p>
-        <ul className="menu-list">
+    <div className="min-h-screen bg-gray-100 flex">
+      <aside className="w-64 bg-white shadow-md p-4">
+        <p className="text-lg font-semibold text-gray-700 mb-4">General</p>
+        <ul className="space-y-2">
           <li>
-            <NavLink to={"/dashboard"}>
-              <IoHome /> Dashboard
+            <NavLink
+              to={"/dashboard"}
+              className="flex items-center text-gray-700 hover:text-blue-600 font-medium p-2 rounded transition duration-150"
+              activeClassName="bg-blue-100 text-blue-600"
+            >
+              <IoHome className="mr-2" /> Dashboard
             </NavLink>
           </li>
         </ul>
+
         {user && user.role === "admin" && (
-          <div>
-            <p className="menu-label">Admin</p>
-            <ul className="menu-list">
+          <div className="mt-6">
+            <p className="text-lg font-semibold text-gray-700 mb-4">Admin</p>
+            <ul className="space-y-2">
               <li>
-                <NavLink to={"/users"}>
-                  <IoPerson /> Users
+                <NavLink
+                  to={"/users"}
+                  className="flex items-center text-gray-700 hover:text-blue-600 font-medium p-2 rounded transition duration-150"
+                  activeClassName="bg-blue-100 text-blue-600"
+                >
+                  <IoPerson className="mr-2" /> Users
                 </NavLink>
               </li>
             </ul>
           </div>
         )}
 
-        <p className="menu-label">Settings</p>
-        <ul className="menu-list">
-          <li>
-            <button onClick={logout} className="button is-white">
-              <IoLogOut /> Logout
-            </button>
-          </li>
-        </ul>
+        <div className="mt-6">
+          <p className="text-lg font-semibold text-gray-700 mb-4">Settings</p>
+          <ul className="space-y-2">
+            <li>
+              <button
+                onClick={logout}
+                className="flex items-center text-gray-700 hover:text-red-600 font-medium p-2 rounded transition duration-150 w-full text-left"
+              >
+                <IoLogOut className="mr-2" /> Logout
+              </button>
+            </li>
+          </ul>
+        </div>
       </aside>
     </div>
   );
