@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { LoginUser, reset } from "../features/authSlice";
+import Google from "../assets/google.png";
+import Facebook from "../assets/facebook.png";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -11,6 +13,14 @@ const Login = () => {
   const { user, isError, isSuccess, isLoading, message } = useSelector(
     (state) => state.auth
   );
+
+  const google = () => {
+    window.open("http://localhost:5000/oauth/google", "_self");
+  };
+
+  const facebook = () => {
+    window.open("http://localhost:5000/oauth/facebook", "_self");
+  };
 
   useEffect(() => {
     if (user || isSuccess) {
@@ -25,7 +35,7 @@ const Login = () => {
   };
 
   return (
-    <section className="min-h-screen flex justify-center items-center">
+    <section className="min-h-screen flex justify-center items-center bg-gray-100">
       <div className="container mx-auto">
         <div className="flex justify-center">
           <div className="w-full max-w-md">
@@ -62,6 +72,26 @@ const Login = () => {
                   className="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 >
                   {isLoading ? "Loading..." : "Login"}
+                </button>
+              </div>
+              <div className="flex space-x-4 justify-center">
+                <button
+                  className="flex items-center px-4 py-1 space-x-2 border rounded-lg hover:bg-red-500 bg-red-600"
+                  onClick={google}
+                >
+                  <img src={Google} alt="Google icon" className="w-6 h-6 " />
+                  <span className="text-xs font-medium text-white">
+                    Continue with Google
+                  </span>
+                </button>
+                <button
+                  className="flex items-center px-4 py-1 space-x-2 border rounded-lg hover:bg-blue-500 bg-blue-600"
+                  onClick={facebook}
+                >
+                  <img src={Facebook} alt="Facebook icon" className="w-6 h-6" />
+                  <span className="text-xs font-medium text-white">
+                    Continue with Facebook
+                  </span>
                 </button>
               </div>
               <div className="text-center">

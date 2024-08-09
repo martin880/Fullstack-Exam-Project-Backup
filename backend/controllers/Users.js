@@ -124,7 +124,7 @@ export const updateUser = async (req, res) => {
     },
   });
   if (!user) return res.status(404).json({ msg: "User tidak ditemukan" });
-  const { name, email, password, confPassword, role } = req.body;
+  const { name, email, password, confPassword } = req.body;
   let hashPassword;
   if (password === "" || password === null) {
     hashPassword = user.password;
@@ -141,7 +141,6 @@ export const updateUser = async (req, res) => {
         name: name,
         email: email,
         password: hashPassword,
-        role: role,
       },
       {
         where: {
