@@ -5,6 +5,7 @@ import Register from "./components/Register";
 import Users from "./pages/Users";
 import AddUser from "./pages/AddUser";
 import EditUser from "./pages/EditUser";
+import ResetPassword from "./pages/ResetPass";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/users" element={<Users />} />
           <Route path="/users/add" element={<AddUser />} />
           <Route path="/users/edit/:id" element={<EditUser />} />
+          <Route path="/users/reset-password/:id" element={<ResetPassword />} />
         </Routes>
       </BrowserRouter>
     </div>
