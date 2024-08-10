@@ -8,7 +8,7 @@ import db from "./config/Database.js";
 import SequelizeStore from "connect-session-sequelize";
 import UserRoute from "./routes/UserRoute.js";
 import AuthRoute from "./routes/AuthRoute.js";
-import OauthRoute from "./routes/auth.route.js";
+import OauthRoute from "./routes/oauth.route.js";
 dotenv.config();
 
 const app = express();
